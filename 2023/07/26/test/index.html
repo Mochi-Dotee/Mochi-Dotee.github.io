@@ -9,7 +9,7 @@
     
     <title>
         
-            Hello World |
+            test |
         
         Mochi的小站
     </title>
@@ -172,7 +172,7 @@
         <div class="article-content-container">
 
             <div class="article-title">
-                <span class="title-hover-animation">Hello World</span>
+                <span class="title-hover-animation">test</span>
             </div>
 
             
@@ -194,44 +194,22 @@
         
             <i class="fa-regular fa-calendar-plus"></i>&nbsp;
         
-        <span class="pc">2022-10-25 11:40:36</span>
-        <span class="mobile">2022-10-25 11:40</span>
+        <span class="pc">2023-07-26 19:40:39</span>
+        <span class="mobile">2023-07-26 19:40</span>
     </span>
     
         <span class="article-update-date article-meta-item">
         <i class="fas fa-file-pen"></i>&nbsp;
-        <span class="pc">2023-07-27 09:14:29</span>
+        <span class="pc">2023-07-26 19:41:46</span>
     </span>
     
     
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/Hexo/">Hexo</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/Hexo/">Hexo</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
     
 
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>75 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>316 字</span>
         </span>
     
     
@@ -254,20 +232,20 @@
             <div class="article-content keep-markdown-body">
                 
 
-                <p>Welcome to <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/" >Hexo<i class="fas fa-external-link-alt"></i></a>! This is your very first post. Check <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/" >documentation<i class="fas fa-external-link-alt"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html" >troubleshooting<i class="fas fa-external-link-alt"></i></a> or you can ask me on <a class="link"   target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues" >GitHub<i class="fas fa-external-link-alt"></i></a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+                <h1 id="GRPC"><a href="#GRPC" class="headerlink" title="GRPC"></a>GRPC</h1><p>[TOC]<br>gPRC（谷歌远程过程调用）是实现一台设备远程调用服务端服务的方法。<br>依靠多个第三方库</p>
+<h2 id="Protobuf"><a href="#Protobuf" class="headerlink" title="Protobuf"></a>Protobuf</h2><p>编写结构化<code>.proto</code>文件为rpc提供服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">syntax      //版本号</span><br><span class="line"></span><br><span class="line">option      //配置选项</span><br><span class="line"></span><br><span class="line">service     //服务功能</span><br><span class="line"></span><br><span class="line">message     //调用服务对应的信息号</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html" >Writing<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>根据<code>.proto</code>生成可用文件提供于grpc</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">protoc -I ./ --grpc_out=./proto_code --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` ./reduce.proto        #生成.grpc.pb.cc文件</span><br><span class="line">protoc -I ./ --cpp_out=./proto_code ./reduce.proto</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/server.html" >Server<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>生成的<code>.grpc.pb</code>为服务类实例与头文件，<code>.pb</code>为信息类实例与头文件</p>
+<h2 id="Cmake"><a href="#Cmake" class="headerlink" title="Cmake"></a>Cmake</h2><p>使用gRPC服务需要gcc7.0以上版本，由于开发需要使用Centos7终端。该终端没有进行维护，GUN工具源版本一般为4.8，使用以下命令进行更新到gcc9</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y http://mirror.centos.org/centos/7/extras/x86_64/Packages/centos-release-scl-rh-2-3.el7.centos.noarch.rpm</span><br><span class="line"></span><br><span class="line">sudo yum install -y http://mirror.centos.org/centos/7/extras/x86_64/Packages/centos-release-scl-2-3.el7.centos.noarch.rpm</span><br><span class="line"></span><br><span class="line">sudo yum install devtoolset-9-gcc-c++</span><br><span class="line"></span><br><span class="line">source /opt/rh/devtoolset-9/enable</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html" >Generating<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html" >Deployment<i class="fas fa-external-link-alt"></i></a></p>
-
+<p>可以考虑配置用户主目录下<code>.bashrc</code>文件或<code>/etc/profile</code>文件修改环境变量，这样就无需每次使用<code>source</code>命令更改shell脚本环境</p>
+<h3 id="Cmake规则"><a href="#Cmake规则" class="headerlink" title="Cmake规则"></a>Cmake规则</h3><p>使用<code>CmakeLists.txt</code>生成<code>Makefile</code>文件,根据Cmake规则一般需要配置</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">project</span>(version...)  //</span><br><span class="line"></span><br></pre></td></tr></table></figure>
             </div>
 
             
@@ -276,16 +254,16 @@
 <div class="article-copyright-info-container">
     <ul class="copyright-info-content">
         <li class="post-title">
-            <span class="type">本文标题</span>：<span class="content">Hello World</span>
+            <span class="type">本文标题</span>：<span class="content">test</span>
         </li>
         <li class="post-author">
             <span class="type">本文作者</span>：<span class="content">Mochi</span>
         </li>
         <li class="post-time">
-            <span class="type">创建时间</span>：<span class="content">2022-10-25 11:40:36</span>
+            <span class="type">创建时间</span>：<span class="content">2023-07-26 19:40:39</span>
         </li>
         <li class="post-link">
-            <span class="type">本文链接</span>：<span class="content">2022/10/25/hello-world/</span>
+            <span class="type">本文链接</span>：<span class="content">2023/07/26/test/</span>
         </li>
         <li class="post-license">
             <span class="type">版权声明</span>：<span class="content">本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！</span>
@@ -300,33 +278,25 @@
             
 
             
-                <ul class="post-tags-box">
-                    
-                        <li class="tag-item">
-                            <a href="/tags/Hexo/">#Hexo</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            
 
             
                 <div class="article-nav">
                     
-                        <div class="article-prev">
-                            <a class="prev"
-                               rel="prev"
-                               href="/2023/07/26/test/"
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2022/10/25/hello-world/"
                             >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Hello World</span>
+                                <span class="post-nav-item">下一篇</span>
                             </span>
-                                <span class="title flex-center">
-                                <span class="post-nav-title-item">test</span>
-                                <span class="post-nav-item">上一篇</span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
                             </span>
                             </a>
                         </div>
-                    
                     
                 </div>
             
@@ -338,7 +308,7 @@
             <div class="toc-content-container">
                 <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GRPC"><span class="nav-number">1.</span> <span class="nav-text">GRPC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Protobuf"><span class="nav-number">1.1.</span> <span class="nav-text">Protobuf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cmake"><span class="nav-number">1.2.</span> <span class="nav-text">Cmake</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cmake%E8%A7%84%E5%88%99"><span class="nav-number">1.2.1.</span> <span class="nav-text">Cmake规则</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
 

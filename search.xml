@@ -24,4 +24,22 @@
         <tag>Hexo</tag>
       </tags>
   </entry>
+  <entry>
+    <title>test</title>
+    <url>/2023/07/26/test/</url>
+    <content><![CDATA[<h1 id="GRPC"><a href="#GRPC" class="headerlink" title="GRPC"></a>GRPC</h1><p>[TOC]<br>gPRC（谷歌远程过程调用）是实现一台设备远程调用服务端服务的方法。<br>依靠多个第三方库</p>
+<h2 id="Protobuf"><a href="#Protobuf" class="headerlink" title="Protobuf"></a>Protobuf</h2><p>编写结构化<code>.proto</code>文件为rpc提供服务</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">syntax      //版本号</span><br><span class="line"></span><br><span class="line">option      //配置选项</span><br><span class="line"></span><br><span class="line">service     //服务功能</span><br><span class="line"></span><br><span class="line">message     //调用服务对应的信息号</span><br></pre></td></tr></table></figure>
+
+<p>根据<code>.proto</code>生成可用文件提供于grpc</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">protoc -I ./ --grpc_out=./proto_code --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` ./reduce.proto        #生成.grpc.pb.cc文件</span><br><span class="line">protoc -I ./ --cpp_out=./proto_code ./reduce.proto</span><br></pre></td></tr></table></figure>
+
+<p>生成的<code>.grpc.pb</code>为服务类实例与头文件，<code>.pb</code>为信息类实例与头文件</p>
+<h2 id="Cmake"><a href="#Cmake" class="headerlink" title="Cmake"></a>Cmake</h2><p>使用gRPC服务需要gcc7.0以上版本，由于开发需要使用Centos7终端。该终端没有进行维护，GUN工具源版本一般为4.8，使用以下命令进行更新到gcc9</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo yum install -y http://mirror.centos.org/centos/7/extras/x86_64/Packages/centos-release-scl-rh-2-3.el7.centos.noarch.rpm</span><br><span class="line"></span><br><span class="line">sudo yum install -y http://mirror.centos.org/centos/7/extras/x86_64/Packages/centos-release-scl-2-3.el7.centos.noarch.rpm</span><br><span class="line"></span><br><span class="line">sudo yum install devtoolset-9-gcc-c++</span><br><span class="line"></span><br><span class="line">source /opt/rh/devtoolset-9/enable</span><br></pre></td></tr></table></figure>
+
+<p>可以考虑配置用户主目录下<code>.bashrc</code>文件或<code>/etc/profile</code>文件修改环境变量，这样就无需每次使用<code>source</code>命令更改shell脚本环境</p>
+<h3 id="Cmake规则"><a href="#Cmake规则" class="headerlink" title="Cmake规则"></a>Cmake规则</h3><p>使用<code>CmakeLists.txt</code>生成<code>Makefile</code>文件,根据Cmake规则一般需要配置</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">project</span>(version...)  //</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
 </search>
