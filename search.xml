@@ -25,9 +25,9 @@
       </tags>
   </entry>
   <entry>
-    <title>test</title>
+    <title>gRPC学习记录_1</title>
     <url>/2023/07/26/test/</url>
-    <content><![CDATA[<h1 id="GRPC"><a href="#GRPC" class="headerlink" title="GRPC"></a>GRPC</h1><p>[TOC]<br>gPRC（谷歌远程过程调用）是实现一台设备远程调用服务端服务的方法。<br>依靠多个第三方库</p>
+    <content><![CDATA[<h1 id="GRPC"><a href="#GRPC" class="headerlink" title="GRPC"></a>GRPC</h1><p>gPRC（谷歌远程过程调用）是实现一台设备远程调用服务端服务的方法。<br>依靠多个第三方库</p>
 <h2 id="Protobuf"><a href="#Protobuf" class="headerlink" title="Protobuf"></a>Protobuf</h2><p>编写结构化<code>.proto</code>文件为rpc提供服务</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">syntax      //版本号</span><br><span class="line"></span><br><span class="line">option      //配置选项</span><br><span class="line"></span><br><span class="line">service     //服务功能</span><br><span class="line"></span><br><span class="line">message     //调用服务对应的信息号</span><br></pre></td></tr></table></figure>
 
@@ -41,5 +41,11 @@
 <p>可以考虑配置用户主目录下<code>.bashrc</code>文件或<code>/etc/profile</code>文件修改环境变量，这样就无需每次使用<code>source</code>命令更改shell脚本环境</p>
 <h3 id="Cmake规则"><a href="#Cmake规则" class="headerlink" title="Cmake规则"></a>Cmake规则</h3><p>使用<code>CmakeLists.txt</code>生成<code>Makefile</code>文件,根据Cmake规则一般需要配置</p>
 <figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">project</span>(version...)  //</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+      <tags>
+        <tag>学习记录 gRPC</tag>
+      </tags>
   </entry>
 </search>
