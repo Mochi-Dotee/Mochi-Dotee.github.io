@@ -25,9 +25,9 @@
       </tags>
   </entry>
   <entry>
-    <title>gRPC学习记录_1</title>
-    <url>/2023/07/26/test/</url>
-    <content><![CDATA[<h1 id="GRPC"><a href="#GRPC" class="headerlink" title="GRPC"></a>GRPC</h1><p>gPRC（谷歌远程过程调用）是实现一台设备远程调用服务端服务的方法。<br>依靠多个第三方库</p>
+    <title>gRPC学习记录</title>
+    <url>/2023/07/26/gRPC/</url>
+    <content><![CDATA[<p>gPRC（谷歌远程过程调用）是实现一台设备远程调用服务端服务的方法，依赖多个第三方库</p>
 <h2 id="Protobuf"><a href="#Protobuf" class="headerlink" title="Protobuf"></a>Protobuf</h2><p>编写结构化<code>.proto</code>文件为rpc提供服务</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">syntax      //版本号</span><br><span class="line"></span><br><span class="line">option      //配置选项</span><br><span class="line"></span><br><span class="line">service     //服务功能</span><br><span class="line"></span><br><span class="line">message     //调用服务对应的信息号</span><br></pre></td></tr></table></figure>
 
@@ -40,13 +40,16 @@
 
 <p>可以考虑配置用户主目录下<code>.bashrc</code>文件或<code>/etc/profile</code>文件修改环境变量，这样就无需每次使用<code>source</code>命令更改shell脚本环境</p>
 <h3 id="Cmake规则"><a href="#Cmake规则" class="headerlink" title="Cmake规则"></a>Cmake规则</h3><p>使用<code>CmakeLists.txt</code>生成<code>Makefile</code>文件,根据Cmake规则一般需要配置</p>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">project</span>(version...)  //</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION x.x.x) //限制的cmake最低版本号</span><br><span class="line"></span><br><span class="line"><span class="keyword">project</span>(ProjectName C CXX)  //cmake项目名称</span><br><span class="line"></span><br><span class="line"><span class="keyword">include</span>（../cmake/common.camke）</span><br><span class="line">/* 由于<span class="keyword">target_link_libraries</span>(目标链接库，类似C/CPP中头文件)使用变量调用方便，形式如下：</span><br><span class="line">    <span class="keyword">set</span>(_GRPC_GRPCPP gRPC::grpc++)</span><br><span class="line">将gRPC中的grpcpp库定义为_GRPC_GRPCPP调用。类似会有多个第三方支持库需要使用该种方法，为方便查询会写成common.camke文件，也可直接以<span class="keyword">set</span>方法全部写入cmake文档</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line"><span class="keyword">get_filename_component</span>(argumentName fileName gotPart ) </span><br><span class="line">//获取一个文件的部分，例如路径、扩展名、所在目录等，设置为变量</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_custom_command</span>( OUTOUT xxx</span><br><span class="line">                    <span class="keyword">COMMAND</span> xxx</span><br><span class="line">                    ARGS -xxxx</span><br><span class="line">                    DEPENDS xxxx)</span><br><span class="line">//将编译命令组合   /*output为输出文件，使用之前设定好的变量名访</span><br><span class="line">                    <span class="keyword">command</span>为编译指令（可以使用第三方指令）</span><br><span class="line">                    args为编译选项</span><br><span class="line">                    depends为依赖文件*/</span><br><span class="line"><span class="keyword">include_directories</span>(include_directory_path)</span><br><span class="line">//在环境变量之外可以额外指定需要访问的头文件目录</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_library</span>（ libraryName srcName ）</span><br><span class="line">//将源文件的头文件和实现源码都设置到一个库中</span><br><span class="line"></span><br><span class="line"><span class="keyword">target_link_libraries</span> ( libraryName thirdLibName )</span><br><span class="line">//添加编译目标文件所需要的第三方库</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span>(targetName fileName....)</span><br><span class="line">//将所有src文件名设置为targetName，方便之后生成可执行文件</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(targetName <span class="string">&quot;$&#123;targetName&#125;.expendName&quot;</span>)</span><br><span class="line">//根据文件名和扩展名编译所匹配的文件</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>学习记录</category>
       </categories>
       <tags>
         <tag>学习记录</tag>
         <tag>gRPC</tag>
+        <tag>Protobuf</tag>
+        <tag>Cmake</tag>
       </tags>
   </entry>
 </search>

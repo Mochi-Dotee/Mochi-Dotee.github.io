@@ -9,7 +9,7 @@
     
     <title>
         
-            Hello World |
+            gRPC学习记录 |
         
         Mochi的小站
     </title>
@@ -172,7 +172,7 @@
         <div class="article-content-container">
 
             <div class="article-title">
-                <span class="title-hover-animation">Hello World</span>
+                <span class="title-hover-animation">gRPC学习记录</span>
             </div>
 
             
@@ -194,13 +194,13 @@
         
             <i class="fa-regular fa-calendar-plus"></i>&nbsp;
         
-        <span class="pc">2022-10-25 11:40:36</span>
-        <span class="mobile">2022-10-25 11:40</span>
+        <span class="pc">2023-07-26 19:40:39</span>
+        <span class="mobile">2023-07-26 19:40</span>
     </span>
     
         <span class="article-update-date article-meta-item">
         <i class="fas fa-file-pen"></i>&nbsp;
-        <span class="pc">2023-07-27 09:14:29</span>
+        <span class="pc">2023-08-02 14:06:30</span>
     </span>
     
     
@@ -209,7 +209,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/Hexo/">Hexo</a>&nbsp;
+                        <a href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a>&nbsp;
                     </li>
                 
             </ul>
@@ -221,7 +221,19 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/Hexo/">Hexo</a>&nbsp;
+                        <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/gRPC/">gRPC</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Protobuf/">Protobuf</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Cmake/">Cmake</a>&nbsp;
                     </li>
                 
             </ul>
@@ -231,12 +243,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>75 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>633 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>2 分钟</span>
         </span>
     
     
@@ -254,19 +266,20 @@
             <div class="article-content keep-markdown-body">
                 
 
-                <p>Welcome to <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/" >Hexo<i class="fas fa-external-link-alt"></i></a>! This is your very first post. Check <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/" >documentation<i class="fas fa-external-link-alt"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html" >troubleshooting<i class="fas fa-external-link-alt"></i></a> or you can ask me on <a class="link"   target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues" >GitHub<i class="fas fa-external-link-alt"></i></a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+                <p>gPRC（谷歌远程过程调用）是实现一台设备远程调用服务端服务的方法，依赖多个第三方库</p>
+<h2 id="Protobuf"><a href="#Protobuf" class="headerlink" title="Protobuf"></a>Protobuf</h2><p>编写结构化<code>.proto</code>文件为rpc提供服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">syntax      //版本号</span><br><span class="line"></span><br><span class="line">option      //配置选项</span><br><span class="line"></span><br><span class="line">service     //服务功能</span><br><span class="line"></span><br><span class="line">message     //调用服务对应的信息号</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html" >Writing<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>根据<code>.proto</code>生成可用文件提供于grpc</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">protoc -I ./ --grpc_out=./proto_code --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` ./reduce.proto        #生成.grpc.pb.cc文件</span><br><span class="line">protoc -I ./ --cpp_out=./proto_code ./reduce.proto</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/server.html" >Server<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>生成的<code>.grpc.pb</code>为服务类实例与头文件，<code>.pb</code>为信息类实例与头文件</p>
+<h2 id="Cmake"><a href="#Cmake" class="headerlink" title="Cmake"></a>Cmake</h2><p>使用gRPC服务需要gcc7.0以上版本，由于开发需要使用Centos7终端。该终端没有进行维护，GUN工具源版本一般为4.8，使用以下命令进行更新到gcc9</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y http://mirror.centos.org/centos/7/extras/x86_64/Packages/centos-release-scl-rh-2-3.el7.centos.noarch.rpm</span><br><span class="line"></span><br><span class="line">sudo yum install -y http://mirror.centos.org/centos/7/extras/x86_64/Packages/centos-release-scl-2-3.el7.centos.noarch.rpm</span><br><span class="line"></span><br><span class="line">sudo yum install devtoolset-9-gcc-c++</span><br><span class="line"></span><br><span class="line">source /opt/rh/devtoolset-9/enable</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html" >Generating<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html" >Deployment<i class="fas fa-external-link-alt"></i></a></p>
+<p>可以考虑配置用户主目录下<code>.bashrc</code>文件或<code>/etc/profile</code>文件修改环境变量，这样就无需每次使用<code>source</code>命令更改shell脚本环境</p>
+<h3 id="Cmake规则"><a href="#Cmake规则" class="headerlink" title="Cmake规则"></a>Cmake规则</h3><p>使用<code>CmakeLists.txt</code>生成<code>Makefile</code>文件,根据Cmake规则一般需要配置</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION x.x.x) //限制的cmake最低版本号</span><br><span class="line"></span><br><span class="line"><span class="keyword">project</span>(ProjectName C CXX)  //cmake项目名称</span><br><span class="line"></span><br><span class="line"><span class="keyword">include</span>（../cmake/common.camke）</span><br><span class="line">/* 由于<span class="keyword">target_link_libraries</span>(目标链接库，类似C/CPP中头文件)使用变量调用方便，形式如下：</span><br><span class="line">    <span class="keyword">set</span>(_GRPC_GRPCPP gRPC::grpc++)</span><br><span class="line">将gRPC中的grpcpp库定义为_GRPC_GRPCPP调用。类似会有多个第三方支持库需要使用该种方法，为方便查询会写成common.camke文件，也可直接以<span class="keyword">set</span>方法全部写入cmake文档</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line"><span class="keyword">get_filename_component</span>(argumentName fileName gotPart ) </span><br><span class="line">//获取一个文件的部分，例如路径、扩展名、所在目录等，设置为变量</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_custom_command</span>( OUTOUT xxx</span><br><span class="line">                    <span class="keyword">COMMAND</span> xxx</span><br><span class="line">                    ARGS -xxxx</span><br><span class="line">                    DEPENDS xxxx)</span><br><span class="line">//将编译命令组合   /*output为输出文件，使用之前设定好的变量名访</span><br><span class="line">                    <span class="keyword">command</span>为编译指令（可以使用第三方指令）</span><br><span class="line">                    args为编译选项</span><br><span class="line">                    depends为依赖文件*/</span><br><span class="line"><span class="keyword">include_directories</span>(include_directory_path)</span><br><span class="line">//在环境变量之外可以额外指定需要访问的头文件目录</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_library</span>（ libraryName srcName ）</span><br><span class="line">//将源文件的头文件和实现源码都设置到一个库中</span><br><span class="line"></span><br><span class="line"><span class="keyword">target_link_libraries</span> ( libraryName thirdLibName )</span><br><span class="line">//添加编译目标文件所需要的第三方库</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span>(targetName fileName....)</span><br><span class="line">//将所有src文件名设置为targetName，方便之后生成可执行文件</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(targetName <span class="string">&quot;$&#123;targetName&#125;.expendName&quot;</span>)</span><br><span class="line">//根据文件名和扩展名编译所匹配的文件</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
             </div>
 
@@ -276,16 +289,16 @@
 <div class="article-copyright-info-container">
     <ul class="copyright-info-content">
         <li class="post-title">
-            <span class="type">本文标题</span>：<span class="content">Hello World</span>
+            <span class="type">本文标题</span>：<span class="content">gRPC学习记录</span>
         </li>
         <li class="post-author">
             <span class="type">本文作者</span>：<span class="content">Mochi</span>
         </li>
         <li class="post-time">
-            <span class="type">创建时间</span>：<span class="content">2022-10-25 11:40:36</span>
+            <span class="type">创建时间</span>：<span class="content">2023-07-26 19:40:39</span>
         </li>
         <li class="post-link">
-            <span class="type">本文链接</span>：<span class="content">2022/10/25/hello-world/</span>
+            <span class="type">本文链接</span>：<span class="content">2023/07/26/gRPC/</span>
         </li>
         <li class="post-license">
             <span class="type">版权声明</span>：<span class="content">本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！</span>
@@ -303,7 +316,19 @@
                 <ul class="post-tags-box">
                     
                         <li class="tag-item">
-                            <a href="/tags/Hexo/">#Hexo</a>&nbsp;
+                            <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">#学习记录</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/gRPC/">#gRPC</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Protobuf/">#Protobuf</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Cmake/">#Cmake</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -312,21 +337,21 @@
             
                 <div class="article-nav">
                     
-                        <div class="article-prev">
-                            <a class="prev"
-                               rel="prev"
-                               href="/2023/07/26/gRPC/"
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2022/10/25/hello-world/"
                             >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Hello World</span>
+                                <span class="post-nav-item">下一篇</span>
                             </span>
-                                <span class="title flex-center">
-                                <span class="post-nav-title-item">gRPC学习记录</span>
-                                <span class="post-nav-item">上一篇</span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
                             </span>
                             </a>
                         </div>
-                    
                     
                 </div>
             
@@ -338,7 +363,7 @@
             <div class="toc-content-container">
                 <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Protobuf"><span class="nav-number">1.</span> <span class="nav-text">Protobuf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cmake"><span class="nav-number">2.</span> <span class="nav-text">Cmake</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cmake%E8%A7%84%E5%88%99"><span class="nav-number">2.1.</span> <span class="nav-text">Cmake规则</span></a></li></ol></li></ol>
     </div>
 </div>
 
